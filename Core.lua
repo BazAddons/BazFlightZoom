@@ -87,21 +87,53 @@ local function CancelFlyCheck()
     end
 end
 
+-- Mount type IDs that can fly (from Warcraft wiki MountTypeID)
+local FLYING_MOUNT_TYPES = {
+    [230] = true, -- Flying
+    [241] = true, -- AQ40 (special, but has flight)
+    [247] = true, -- Red Flying Cloud
+    [248] = true, -- Flying (old)
+    [402] = true, -- Dragonriding
+    [407] = true, -- Dynamic flight
+    [424] = true, -- Steady flight
+}
+
+local function IsOnFlyingMount()
+    for i = 1, C_MountJournal.GetNumMounts() do
+        local name, spellID, _, _, _, _, _, _, _, _, _, mountID = C_MountJournal.GetMountInfoByID(i)
+        -- skip
+    end
+    -- Check active mount via buff
+    for i = 1, 40 do
+        local auraData = C_UnitAuras.GetBuffDataByIndex("player", i)
+        if not auraData then break end
+        local spellID = auraData.spellId
+        if spellID then
+            local mountIDs = C_MountJournal.GetMountIDs()
+            for _, mountID in ipairs(mountIDs) do
+                local name, mSpellID, _, _, _, _, _, _, _, _, _, mID = C_MountJournal.GetMountInfoByID(mountID)
+                if mSpellID == spellID then
+                    local _, _, _, _, mountTypeID = C_MountJournal.GetMountInfoExtraByID(mountID)
+                    if FLYING_MOUNT_TYPES[mountTypeID] then
+                        return true
+                    end
+                    return false
+                end
+            end
+        end
+    end
+    return false
+end
+
 local function OnMountChanged()
     if not GetSetting("enabled") then return end
 
     if IsMounted() then
-        -- Start checking if we're flying (not instant on mount)
-        CancelFlyCheck()
-        local checks = 0
-        flyCheckTicker = C_Timer.NewTicker(0.5, function()
-            checks = checks + 1
-            if IsFlying() then
-                CancelFlyCheck()
+        -- Delay slightly to let mount buff apply
+        C_Timer.After(0.3, function()
+            if not IsMounted() then return end
+            if IsOnFlyingMount() then
                 ZoomOut()
-            elseif checks >= 10 then
-                -- 5 seconds passed, not flying — ground mount, cancel
-                CancelFlyCheck()
             end
         end)
     else
