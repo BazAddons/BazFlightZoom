@@ -1,0 +1,11 @@
+## Interface: 120001
+## Title: BazFlightZoom
+## Notes: Automatically zooms out camera and minimap when flying, restores on dismount
+## Author: Baz4k
+## Version: 001
+## X-License: GPL v2
+## X-Category: Miscellaneous
+## IconTexture: 135992
+## SavedVariables: BazFlightZoomSV
+
+Core.lua
