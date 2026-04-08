@@ -211,10 +211,26 @@ end
 -- Options (BazCore OptionsPanel)
 ---------------------------------------------------------------------------
 
-local function GetOptionsTable()
+local function GetLandingPage()
+    return BazCore:CreateLandingPage("BazFlightZoom", {
+        subtitle = "Auto-zoom on flight",
+        description = "Automatically zooms out the camera and minimap when you take flight, and restores them when you land. " ..
+            "Supports flying mounts and optionally ground mounts with separate distance settings.",
+        features = "Configurable camera distance, zoom speed, and delay. " ..
+            "Minimap zoom out on flight with auto-restore on land. " ..
+            "Optional ground mount zoom with separate distance. " ..
+            "Smooth zoom transitions.",
+        guide = {
+            { "Mount Up", "Camera and minimap zoom out automatically when you fly" },
+            { "Dismount", "Everything restores to your normal view" },
+            { "Customize", "Open Settings to adjust distance, speed, and delay" },
+        },
+    })
+end
+
+local function GetSettingsPage()
     return {
-        name = "BazFlightZoom",
-        subtitle = "Auto-zoom camera and minimap when flying",
+        name = "Settings",
         type = "group",
         args = {
             generalHeader = {
@@ -320,8 +336,11 @@ local function GetOptionsTable()
 end
 
 addon.config.onLoad = function(self)
-    BazCore:RegisterOptionsTable(ADDON_NAME, GetOptionsTable)
+    BazCore:RegisterOptionsTable(ADDON_NAME, GetLandingPage)
     BazCore:AddToSettings(ADDON_NAME, "BazFlightZoom")
+
+    BazCore:RegisterOptionsTable(ADDON_NAME .. "-Settings", GetSettingsPage)
+    BazCore:AddToSettings(ADDON_NAME .. "-Settings", "Settings", ADDON_NAME)
 
     BazCore:RegisterOptionsTable(ADDON_NAME .. "-Profiles", function()
         return BazCore:GetProfileOptionsTable(ADDON_NAME)
