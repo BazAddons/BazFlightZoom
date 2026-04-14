@@ -2,7 +2,7 @@
 ## Title: BazFlightZoom
 ## Notes: Automatically zooms out camera and minimap when flying, restores on dismount
 ## Author: Baz4k
-## Version: 006
+## Version: 008
 ## X-License: GPL v2
 ## Category: Baz Suite
 ## X-Category: Miscellaneous
@@ -12,3 +12,5 @@
 ## SavedVariables: BazFlightZoomSV
 
 Core.lua
+
+UserGuide.lua

@@ -240,6 +240,11 @@ local function GetSettingsPage()
         name = "Settings",
         type = "group",
         args = {
+            intro = {
+                order = 0.1,
+                type = "lead",
+                text = "Configure how far the camera and minimap zoom out when you take flight, and what changes when you land.",
+            },
             generalHeader = {
                 order = 1,
                 type = "header",
