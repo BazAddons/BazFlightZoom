@@ -66,7 +66,10 @@ BazCore:RegisterUserGuide("BazFlightZoom", {
                 { type = "table",
                   columns = { "Command", "Effect" },
                   rows = {
-                      { "/bfz", "Open the BazFlightZoom settings page" },
+                      { "/bfz",           "Open the BazFlightZoom settings page" },
+                      { "/bfz camera",    "Toggle camera zoom on/off" },
+                      { "/bfz minimap",   "Toggle minimap zoom on/off" },
+                      { "/bazflightzoom", "Alias for /bfz — every subcommand works on either form" },
                   },
                 },
             },

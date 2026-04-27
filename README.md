@@ -27,6 +27,9 @@ BazFlightZoom detects when you mount a flying mount and smoothly zooms your came
 | Command | Description |
 | --- | --- |
 | `/bfz` | Open settings panel |
+| `/bfz camera` | Toggle camera zoom on/off |
+| `/bfz minimap` | Toggle minimap zoom on/off |
+| `/bazflightzoom` | Alias for `/bfz` |
 
 ***
 
