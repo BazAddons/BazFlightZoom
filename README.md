@@ -2,7 +2,7 @@
 
 # BazFlightZoom
 
-![Part of BazAddons](https://img.shields.io/badge/Part_of-BazAddons-b8924a?labelColor=2a2519) ![WoW](https://img.shields.io/badge/WoW-12.0_Midnight-blue) ![License](https://img.shields.io/badge/License-GPL_v2-green) ![Version](https://img.shields.io/github/v/tag/BazAddons/BazFlightZoom?label=Version&color=orange)
+[![Part of BazAddons](https://img.shields.io/badge/Part_of-BazAddons-b8924a?labelColor=2a2519)](https://bazaddons.com) ![WoW](https://img.shields.io/badge/WoW-12.0_Midnight-blue) ![License](https://img.shields.io/badge/License-GPL_v2-green) ![Version](https://img.shields.io/github/v/tag/BazAddons/BazFlightZoom?label=Version&color=orange)
 
 Automatically zooms out your camera and minimap when you take flight, and restores your previous zoom levels when you land.
 
